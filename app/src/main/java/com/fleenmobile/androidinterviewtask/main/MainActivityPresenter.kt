@@ -51,7 +51,7 @@ class MainActivityPresenter(
                         }
                         .subscribe(
                                 { onNextResponseCode(it.responseCode) },
-                                { onError(it) }
+                                { onError() }
                         )
         )
     }
@@ -64,7 +64,7 @@ class MainActivityPresenter(
         view?.showCounter(localRepository.fetchCount)
     }
 
-    private fun onError(error: Throwable) {
+    private fun onError() {
         val message = resourceProvider.getString(R.string.error_message)
         view?.showError(message)
     }
