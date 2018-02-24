@@ -6,13 +6,51 @@
     android:layout_height="match_parent"
     tools:context="com.fleenmobile.androidinterviewtask.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.constraint.Guideline
+        android:id="@+id/horizontal_guideline_3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <TextView
+        android:id="@+id/response_code_header"
+        style="@style/MainScreenHeader"
+        android:text="@string/response_code_header"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/response_code_value"
+        style="@style/MainScreenValue"
+        app:layout_constraintBaseline_toBaselineOf="@id/response_code_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/response_code_header"
+        tools:text="52a5e208-b75e-4b5c-9f23-fae2287162a6" />
+
+    <TextView
+        android:id="@+id/fetch_counter_header"
+        style="@style/MainScreenHeader"
+        android:text="@string/fetch_count_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/response_code_value" />
+
+    <TextView
+        android:id="@+id/fetch_counter_value"
+        style="@style/MainScreenValue"
+        app:layout_constraintBaseline_toBaselineOf="@id/fetch_counter_header"
+        app:layout_constraintStart_toEndOf="@+id/fetch_counter_header"
+        tools:text="12" />
+
+    <TextView
+        android:id="@+id/fetch_content"
+        style="@style/Wrap"
+        android:background="?android:selectableItemBackground"
+        android:clickable="true"
+        android:padding="16dp"
+        android:text="@string/fetch_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_guideline_3" />
 
 </android.support.constraint.ConstraintLayout>
