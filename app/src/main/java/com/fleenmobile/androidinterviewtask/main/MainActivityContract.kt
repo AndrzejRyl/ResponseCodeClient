@@ -9,6 +9,10 @@ interface MainActivityContract {
         fun showResponseCode(code: String)
         fun showCounter(count: Int)
         fun showError(message: String)
+        fun showButton()
+        fun hideButton()
+        fun showProgress()
+        fun hideProgress()
     }
 
     interface Presenter<in V : View> {

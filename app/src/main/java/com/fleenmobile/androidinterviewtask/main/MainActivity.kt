@@ -2,14 +2,17 @@ package com.fleenmobile.androidinterviewtask.main
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.fleenmobile.androidinterviewtask.R
+import com.fleenmobile.androidinterviewtask.hide
 import com.fleenmobile.androidinterviewtask.injection.ResourceProvider
 import com.fleenmobile.androidinterviewtask.injection.RetrofitProvider
+import com.fleenmobile.androidinterviewtask.show
 import com.fleenmobile.androidinterviewtask.showToast
 import com.fleenmobile.androidinterviewtask.util.LocalRepositoryImpl
 import io.reactivex.disposables.CompositeDisposable
@@ -21,6 +24,12 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
 
     @BindView(R.id.fetch_counter_value)
     lateinit var counterTextView: TextView
+
+    @BindView(R.id.fetch_content)
+    lateinit var fetchContentButton: TextView
+
+    @BindView(R.id.progressBar)
+    lateinit var progressBar: ProgressBar
 
     private lateinit var presenter: MainActivityContract.Presenter<MainActivityContract.View>
 
@@ -63,6 +72,14 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
     override fun showError(message: String) {
         showToast(message, Toast.LENGTH_LONG)
     }
+
+    override fun showButton() = fetchContentButton.show()
+
+    override fun hideButton() = fetchContentButton.hide()
+
+    override fun showProgress() = progressBar.show()
+
+    override fun hideProgress() = progressBar.hide()
 
     @OnClick(R.id.fetch_content)
     fun onFetchContent() {

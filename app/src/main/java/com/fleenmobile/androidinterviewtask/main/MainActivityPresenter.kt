@@ -22,6 +22,9 @@ class MainActivityPresenter(
 
     override fun attachView(view: MainActivityContract.View) {
         this.view = view
+
+        view.showResponseCode(localRepository.responseCode)
+        view.showCounter(localRepository.fetchCount)
     }
 
     override fun detachView() {
@@ -33,12 +36,19 @@ class MainActivityPresenter(
     }
 
     override fun onFetchContentClicked() {
+        view?.hideButton()
+        view?.showProgress()
+
         compositeDisposable.add(
                 apiService
                         .nextPath()
                         .switchMap { apiService.responseCode(it.path) }
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
+                        .doOnTerminate {
+                            view?.hideProgress()
+                            view?.showButton()
+                        }
                         .subscribe(
                                 { onNextResponseCode(it.responseCode) },
                                 { onError(it) }
