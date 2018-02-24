@@ -3,4 +3,5 @@
     <string name="response_code_header">Response Code:</string>
     <string name="fetch_count_header">Times Fetched:</string>
     <string name="fetch_button">Fetch Content</string>
+    <string name="error_message">There was an error. Check IP address of the server</string>
 </resources>

@@ -8,7 +8,11 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.fleenmobile.androidinterviewtask.R
+import com.fleenmobile.androidinterviewtask.injection.ResourceProvider
+import com.fleenmobile.androidinterviewtask.injection.RetrofitProvider
 import com.fleenmobile.androidinterviewtask.showToast
+import com.fleenmobile.androidinterviewtask.util.LocalRepositoryImpl
+import io.reactivex.disposables.CompositeDisposable
 
 class MainActivity : AppCompatActivity(), MainActivityContract.View {
 
@@ -30,7 +34,16 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View {
     }
 
     private fun inject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val resourceProvider = ResourceProvider(this)
+        val apiService = RetrofitProvider().provideApiService()
+        val localRepository = LocalRepositoryImpl(this)
+
+        presenter = MainActivityPresenter(
+                resourceProvider,
+                apiService,
+                CompositeDisposable(),
+                localRepository
+        )
     }
 
     override fun onDestroy() {
