@@ -21,6 +21,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "mode"
+
+    productFlavors {
+        presentation {
+            dimension "mode"
+            buildConfigField 'String', 'BASE_URL', RESPONSE_CODE_CLIENT_BASE_URL
+        }
+    }
 }
 
 dependencies {
@@ -42,7 +51,6 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:3.8.1"
 
     //RxJava
     implementation "io.reactivex.rxjava2:rxjava:2.1.3"
